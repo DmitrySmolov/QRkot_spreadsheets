@@ -11,17 +11,7 @@ async def spreadsheets_create(wrapper_services: Aiogoogle) -> str:
     spreadsheet_body = {
         'properties': {'title': GoogleSettings.SPREADSHEETS_TITLE,
                        'locale': GoogleSettings.SPREADSHEETS_LOCALE},
-        'sheets': [
-            {'properties': {
-                'sheetType': GoogleSettings.SHEET_TYPE,
-                'sheetId': 0,
-                'title': GoogleSettings.FIRST_SHEET_TITLE,
-                'gridProperties': {
-                    'rowCount': GoogleSettings.GRID_ROWS,
-                    'columnCount': GoogleSettings.GRID_COLUMNS
-                }
-            }}
-        ]
+        'sheets': [GoogleSettings.SHEETS_PROPERTIES]
     }
     response = await wrapper_services.as_service_account(
         service.spreadsheets.create(json=spreadsheet_body)
@@ -62,7 +52,6 @@ async def spreadsheets_update_value(
         api_version=GoogleSettings.SPREADSHEETS_API_VERSION
     )
     table_values = GoogleSettings.TABLE_HEADER + charity_projects
-    print(table_values)
     update_body = {
         'majorDimension': GoogleSettings.TABLE_UPD_MAJ_DIMENSIONS,
         'values': table_values

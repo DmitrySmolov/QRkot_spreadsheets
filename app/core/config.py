@@ -60,10 +60,11 @@ class GoogleSettings:
         f'Отчёт на {datetime.now().strftime(settings.logging_dt_format)}'
     )
     SPREADSHEETS_LOCALE = 'ru_RU'
-    SHEET_TYPE = 'GRID'
-    FIRST_SHEET_TITLE = 'Лист1'
-    GRID_ROWS = 100
-    GRID_COLUMNS = 3
+    SHEETS_PROPERTIES = {'properties': {'sheetType': 'GRID',
+                                        'sheetId': 0,
+                                        'title': 'Лист1',
+                                        'gridProperties': {'rowCount': 100,
+                                                           'columnCount': 3}}}
     TABLE_HEADER = [
         ['Отчёт от', datetime.now().strftime(settings.logging_dt_format)],
         ['Топ проектов по скорости закрытия'],
